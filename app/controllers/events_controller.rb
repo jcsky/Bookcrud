@@ -10,9 +10,12 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
 
   def create
     @event=Event.new( event_params )
-    @event.save
-    flash[:n] = "新增成功"
-    redirect_to events_url
+    if @event.save
+      flash[:n] = "新增成功"
+      redirect_to events_url
+    else
+      render :action => :new
+    end
   end
 
   def show
@@ -22,9 +25,12 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
   end
 
   def update
-    @event.update(event_params)
-    flash[:n] = "修改成功"
-    redirect_to events_url
+    if @event.update(event_params)
+      flash[:n] = "修改成功"
+      redirect_to events_url
+    else
+      render :action => :edit
+    end
   end
 
   def destroy
