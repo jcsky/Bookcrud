@@ -1,0 +1,13 @@
+<h1>Index</h1>
+
+<% @events.each do |f| %>
+  <p>
+    <%= f.name %>
+    <%= link_to '顯示',event_path(f) %>
+    <%= link_to '修改',edit_event_path(f) %>
+    <%= link_to '刪除',event_path(f) , :method => :delete %>
+  </p>
+
+<% end %>
+
+    <%= link_to '新增',new_event_path %>

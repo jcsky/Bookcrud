@@ -1,0 +1,11 @@
+<h1>EDIT</h1>
+
+<%= form_for @event, url: event_path(@event), :method => :patch do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %> <p></p>
+  <%= f.label :isbn, "ISBN" %>
+  <%= f.text_field :isbn %> <p></p>
+  <%= f.label :description, "Description" %>
+  <%= f.text_field :description %>
+  <%= f.submit "update" %>
+<% end %>
