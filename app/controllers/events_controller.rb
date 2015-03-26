@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
   def index
-    @events=Event.all
+    @events = Event.page(params[:page]).per(5)
   end
 
   def new
@@ -11,7 +11,7 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
   def create
     @event=Event.new( event_params )
     @event.save
-
+    flash[:n] = "新增成功"
     redirect_to events_url
   end
 
@@ -23,11 +23,13 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
 
   def update
     @event.update(event_params)
+    flash[:n] = "修改成功"
     redirect_to events_url
   end
 
   def destroy
     @event.destroy
+    flash[:alert] = "刪除成功"
     redirect_to events_path
   end
 
