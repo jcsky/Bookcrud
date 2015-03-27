@@ -2,12 +2,12 @@
 
 <% @events.each do |f| %>
 
-  <table class="table deoutline">
+  <table class="table table-hover">
     <tr>
-      <td class="deoutline col-md-9"><%= f.name %></td>
-      <td><%= link_to '顯示',event_path(f) %></td>
-      <td><%= link_to '修改',edit_event_path(f) %></td>
-      <td><%= link_to '刪除',event_path(f) , :method => :delete %></td>
+      <td class="col-md-9"><%= f.name %></td>
+      <td class="col-md-1"><button class="btn btn-default" type="submit"><%= link_to '顯示',event_path(f) %></button></td>
+      <td class="col-md-1"><button type="button" class="btn btn-success"><%= link_to '修改',edit_event_path(f) %></button></td>
+      <td class="col-md-1"><button type="button" class="btn btn-danger"><%= link_to '刪除',event_path(f) , :method => :delete %></button></td>
     </tr>
   </table>
 
@@ -15,13 +15,18 @@
   <%= paginate @events %>
 
 <% if @e_show %>
-  <h1> ===== SHOW =====</h1>
-  <p>id: <%= @e_show.id %></p>
-  <p>Name: <%= @e_show.name %></p>
-  <p>ISBN: <%= @e_show.isbn %></p>
-  <p>Des: <%= @e_show.description %></p>
-  <p>Build Date: <%= @e_show.builddate %></p>
-  <p>Sold Time: <%= @e_show.soldtime %></p>
+<h1 class="col-md-12"> ===== SHOW =====</h1>
+  <table class="table">
+    <tr>
+      <td class="col-md-2">id: <%= @e_show.id %></td>
+      <td class="col-md-2">Name: <%= @e_show.name %></td>
+      <td class="col-md-2">ISBN: <%= @e_show.isbn %></td>
+      <td class="col-md-2">Des: <%= @e_show.description %></td>
+      <td class="col-md-2">Build Date: <%= @e_show.builddate %></td>
+      <td class="col-md-2">Sold Time: <%= @e_show.soldtime %></td>
+    </tr>
+  </table>
+
 <% end %>
 
 
