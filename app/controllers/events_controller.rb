@@ -1,12 +1,10 @@
 class EventsController < ApplicationController
-before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
+before_action :dofirst, :only => [ :update, :edit, :destroy]
   def index
     @events = Event.page(params[:page]).per(5)
+    @e_new = Event.new
   end
 
-  def new
-    @event=Event.new
-  end
 
   def create
     @event=Event.new( event_params )
@@ -19,9 +17,14 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
   end
 
   def show
+    index
+    @e_show=Event.find(params[:id])
+    render :action => :index
   end
 
   def edit
+    index
+    render :action => :index
   end
 
   def update
@@ -42,7 +45,7 @@ before_action :dofirst, :only => [ :update, :show, :edit, :destroy]
   private
 
   def event_params
-    params.require(:event).permit(:name, :isbn, :description)
+    params.require(:event).permit(:name, :isbn, :description, :soldtime, :builddate)
   end
 
   def dofirst

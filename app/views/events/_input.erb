@@ -1,14 +1,28 @@
 
+<table class="table">
   <%= f.label :name, "Name" %>
-  <%= f.text_field :name %> <p></p>
+  <%= f.text_field :name %>
+  <p></p>
   <%= f.label :isbn, "ISBN" %>
-  <%= f.text_field :isbn %> <p></p>
+  <%= f.text_field :isbn %>
+  <p></p>
   <%= f.label :description, "Description" %>
   <%= f.text_field :description %>
-  <%= f.submit "update" %>
+  <p></p>
+  <%= f.label :builddate, "builddate" %>
+  <%= f.date_select :builddate %>
+  <p></p>
+  <%= f.label :soldtime, "soldtime" %>
+  <%= f.datetime_select :soldtime %>
+  <p></p>
+</table>
+
+
+  <% if @event!=nil %>
 
   <% if @event.errors.any? %>
   <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
+  <% end %>
   <% end %>

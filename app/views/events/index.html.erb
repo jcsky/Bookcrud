@@ -1,14 +1,44 @@
 <h1>Index</h1>
 
 <% @events.each do |f| %>
-  <p>
-    <%= f.name %>
-    <%= link_to '顯示',event_path(f) %>
-    <%= link_to '修改',edit_event_path(f) %>
-    <%= link_to '刪除',event_path(f) , :method => :delete %>
-  </p>
+
+  <table class="table deoutline">
+    <tr>
+      <td class="deoutline col-md-9"><%= f.name %></td>
+      <td><%= link_to '顯示',event_path(f) %></td>
+      <td><%= link_to '修改',edit_event_path(f) %></td>
+      <td><%= link_to '刪除',event_path(f) , :method => :delete %></td>
+    </tr>
+  </table>
 
 <% end %>
   <%= paginate @events %>
 
-  <%= link_to '新增',new_event_path %>
+<% if @e_show %>
+  <h1> ===== SHOW =====</h1>
+  <p>id: <%= @e_show.id %></p>
+  <p>Name: <%= @e_show.name %></p>
+  <p>ISBN: <%= @e_show.isbn %></p>
+  <p>Des: <%= @e_show.description %></p>
+  <p>Build Date: <%= @e_show.builddate %></p>
+  <p>Sold Time: <%= @e_show.soldtime %></p>
+<% end %>
+
+
+<% if @event %>
+  <h1> ===== EDIT =====</h1>
+
+  <%= form_for @event, url: event_path(@event), :method => :patch do |f| %>
+    <%= render :partial => "input", :locals => { :f => f } %>
+    <%= f.submit "update" %>
+  <% end %>
+<% end %>
+
+
+<h1> ===== NEW =====</h1>
+
+<%= form_for @e_new, url: events_path do |f| %>
+  <%= render :partial => "input", :locals => { :f => f } %>
+  <%= f.submit "input" %>
+<% end %>
+
